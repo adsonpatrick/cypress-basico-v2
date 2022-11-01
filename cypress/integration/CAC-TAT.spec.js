@@ -82,13 +82,13 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
     it("seleciona um produto (YouTube) por seu texto", ()=>{
         cy.get("#product")
-            .select("Youtube")
+            .select("YouTube")
             .should("have.value", "youtube")
     })
     it("marca o tipo de atendimento Feedback", ()=>{
-        cy.get('input[type="radio"] [value="feedback"]')
+        cy.get('input[type="radio"][value="feedback"]')
             .check()
-            .should('have.value', 'feedbeck')
+            .should('have.value', 'feedback')
     })
     it('marcar cada tipo de atendimento', ()=>{
         cy.get('input[type="radio"]')
@@ -109,29 +109,29 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     })
 
     it('seleciona um arquivo da pasta fixtures', ()=>{
-        cy.get('input[type"file"]')
+        cy.get('input[type="file"]')
             .should('not.have.value')
-            .selectFile('cypress/fixtures/exemplo.json')
+            .selectFile('cypress/fixtures/example.json')
             .should(($input)=>{
-                expect($input[0].files[0].name).to.equal('exemplo.json')
+                expect($input[0].files[0].name).to.equal('example.json')
             })
     })
 
     it('seleciona um arquivo simulando um drag-and-drop', ()=>{
-        cy.get('input[type"file"]')
+        cy.get('input[type="file"]')
             .should('not.have.value')
-            .selectFile('cypress/fixtures/exemplo.json', {action: 'drag-drop'})
+            .selectFile('cypress/fixtures/example.json', {action: 'drag-drop'})
             .should(($input)=>{
-                expect($input[0].files[0].name).to.equal('exemplo.json')
+                expect($input[0].files[0].name).to.equal('example.json')
             })
     })
 
     it('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', ()=>{
-        cy.fixture('exemplo').as('sampleFile')
-        cy.get('input[type"file"]')
+        cy.fixture('example.json').as('sampleFile')
+        cy.get('input[type="file"]')
             .selectFile('@sampleFile')
             .should(($input)=>{
-                expect($input[0].files[0].name).to.equal('exemplo.json')
+                expect($input[0].files[0].name).to.equal('example.json')
             })
             
     })
@@ -147,6 +147,4 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
         cy.contains('Talking About Testing').should('be.visible')
     })
-
-    it('')
   })
